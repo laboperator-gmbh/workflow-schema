@@ -2521,6 +2521,11 @@ export declare const schemas: {
                             examples: string[];
                             markdownDescription: string;
                         };
+                        externalId: {
+                            type: string;
+                            description: string;
+                            markdownDescription: string;
+                        };
                         tabs: {
                             type: string;
                             description: string;
@@ -4446,6 +4451,11 @@ export declare const schemas: {
                             $ref: string;
                             description: string;
                             examples: string[];
+                            markdownDescription: string;
+                        };
+                        externalId: {
+                            type: string;
+                            description: string;
                             markdownDescription: string;
                         };
                         tabs: {

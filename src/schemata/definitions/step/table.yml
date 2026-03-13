@@ -95,6 +95,10 @@ properties:
       ```
     examples:
       - my_table_data
+  externalId:
+    type: string
+    description: |
+      The external identifier of the table.
   tabs:
     type: array
     description: |
