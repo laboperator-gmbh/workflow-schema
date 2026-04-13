@@ -17,6 +17,12 @@ properties:
           delayed.
   contextInfoSettings:
     $ref: '#/definitions/context/settings'
+  stepless:
+    type: boolean
+    title: Whether the workflow is in stepless mode.
+    description: |
+      If true, the workflow is in stepless mode.
+    default: false
   reportHeader:
     type: string
     title: Header of the workflow report.
