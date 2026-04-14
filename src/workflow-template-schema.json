@@ -373,13 +373,6 @@
           "contextInfoSettings": {
             "$ref": "#/definitions/context/settings"
           },
-          "stepless": {
-            "type": "boolean",
-            "title": "Whether the workflow is in stepless mode.",
-            "description": "If true, the workflow is in stepless mode.\n",
-            "default": false,
-            "markdownDescription": "If true, the workflow is in stepless mode.\n\n\nSee more: [Workflow Config Schema](https://schema.laboperator.com/schemas/definitions/config/workflow-config) "
-          },
           "reportHeader": {
             "type": "string",
             "title": "Header of the workflow report.",

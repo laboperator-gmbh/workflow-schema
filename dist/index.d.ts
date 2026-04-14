@@ -4106,13 +4106,6 @@ export declare const schemas: {
                         contextInfoSettings: {
                             $ref: string;
                         };
-                        stepless: {
-                            type: string;
-                            title: string;
-                            description: string;
-                            default: boolean;
-                            markdownDescription: string;
-                        };
                         reportHeader: {
                             type: string;
                             title: string;
