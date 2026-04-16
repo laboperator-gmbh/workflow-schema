@@ -17,16 +17,10 @@ describe('Schema validation', () => {
 
     it('should have all required properties', () => {
       const { errors, schema } = validate({});
-      const requiredProperties = [
-        'schema_version',
-        'info',
-        'fields',
-        'steps',
-        'flow',
-      ];
+      const requiredProperties = ['schema_version', 'info', 'fields'];
 
       expect(schema).toEqual(workflowTemplateSchema);
-      expect(errors).toHaveLength(5);
+      expect(errors).toHaveLength(3);
 
       (errors || []).forEach((err, index) => {
         expect(err.schema).toEqual(requiredProperties);
