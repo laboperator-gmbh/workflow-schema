@@ -9,8 +9,6 @@ required:
   - schema_version
   - info
   - fields
-  - steps
-  - flow
 properties:
   schema_version:
     $ref: '#/definitions/schema-version'
