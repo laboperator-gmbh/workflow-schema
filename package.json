@@ -14,8 +14,8 @@
     "build:schema": "ts-node src/compile.ts",
     "dev": "nodemon src/compile.ts & nodemon src/validation.ts",
     "format": "prettier --write 'src/**/*.{ts,js}'",
-    "lint": "eslint --fix 'src/**/*.{ts,js}'",
     "postinstall": "husky",
+    "lint": "eslint --fix 'src/**/*.{ts,js}'",
     "sort": "sort-package-json package.json",
     "test": "jest --runInBand",
     "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
@@ -63,5 +63,5 @@
     "typescript": "^5.9.3",
     "yaml": "^2.9.0"
   },
-  "packageManager": "yarn@4.16.0"
+  "packageManager": "yarn@4.17.0"
 }
