@@ -3470,11 +3470,22 @@ export declare const schemas: {
                             type: string;
                             markdownDescription: string;
                         };
+                        multiple: {
+                            type: string;
+                            default: boolean;
+                            description: string;
+                            markdownDescription: string;
+                        };
                     };
-                    examples: {
+                    examples: ({
                         type: string;
                         mediaType: string;
-                    }[];
+                        multiple?: undefined;
+                    } | {
+                        type: string;
+                        mediaType: string;
+                        multiple: boolean;
+                    })[];
                     markdownDescription: string;
                 };
                 quantity: {
@@ -7267,11 +7278,22 @@ export declare const schemas: {
                             type: string;
                             markdownDescription: string;
                         };
+                        multiple: {
+                            type: string;
+                            default: boolean;
+                            description: string;
+                            markdownDescription: string;
+                        };
                     };
-                    examples: {
+                    examples: ({
                         type: string;
                         mediaType: string;
-                    }[];
+                        multiple?: undefined;
+                    } | {
+                        type: string;
+                        mediaType: string;
+                        multiple: boolean;
+                    })[];
                     markdownDescription: string;
                 };
                 quantity: {
