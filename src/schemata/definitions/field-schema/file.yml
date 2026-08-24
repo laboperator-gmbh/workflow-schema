@@ -2,6 +2,25 @@
 type: object
 description: |
   Defines a field of type `file`.
+
+  A single-file field stores one attachment id. Interpolating the field
+  (`{{myFile}}`) yields the Base64-encoded contents; scripts receive the
+  parsed body when the media type is JSON, XML, or YAML.
+
+  With `multiple: true` the field stores an array of attachment ids. Each
+  file is addressable from workflow expressions and carries its own metadata
+  (filename, content type, id, and contents), so callers can tell files
+  apart — for example which stress point an upload belongs to:
+
+  - `{{myFiles.0.filename}}` — original filename
+  - `{{myFiles.0.content_type}}` — media type
+  - `{{myFiles.0.id}}` — attachment id
+  - `{{myFiles.0.content}}` — Base64-encoded contents
+  - `{{myFiles}}` — the full array (for example in a JSON webhook body)
+
+  In scripts the field is an array of objects with `id`, `filename`,
+  `content_type`, and `body` (parsed for JSON, XML, or YAML). Use
+  `VALUE_AT(myFiles, '/0/filename')` to read a single property.
 required: [type, mediaType]
 properties:
   type:
@@ -11,8 +30,18 @@ properties:
     description: |
       A [media type](https://www.iana.org/assignments/media-types/media-types.xhtml) is an identifier for file formats and format contents. Note that not all possible media types might be supported.
     type: string
+  multiple:
+    type: boolean
+    default: false
+    description: |
+      When true, the field accepts more than one file. The stored value is an
+      array of attachment ids, and expressions expose per-file metadata as
+      described above.
 examples:
   - type: file
     mediaType: application/pdf
   - type: file
     mediaType: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  - type: file
+    mediaType: text/csv
+    multiple: true

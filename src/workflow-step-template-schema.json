@@ -3803,7 +3803,7 @@
       },
       "file": {
         "type": "object",
-        "description": "Defines a field of type `file`.\n",
+        "description": "Defines a field of type `file`.\n\nA single-file field stores one attachment id. Interpolating the field\n(`{{myFile}}`) yields the Base64-encoded contents; scripts receive the\nparsed body when the media type is JSON, XML, or YAML.\n\nWith `multiple: true` the field stores an array of attachment ids. Each\nfile is addressable from workflow expressions and carries its own metadata\n(filename, content type, id, and contents), so callers can tell files\napart — for example which stress point an upload belongs to:\n\n- `{{myFiles.0.filename}}` — original filename\n- `{{myFiles.0.content_type}}` — media type\n- `{{myFiles.0.id}}` — attachment id\n- `{{myFiles.0.content}}` — Base64-encoded contents\n- `{{myFiles}}` — the full array (for example in a JSON webhook body)\n\nIn scripts the field is an array of objects with `id`, `filename`,\n`content_type`, and `body` (parsed for JSON, XML, or YAML). Use\n`VALUE_AT(myFiles, '/0/filename')` to read a single property.\n",
         "required": [
           "type",
           "mediaType"
@@ -3819,6 +3819,12 @@
             "description": "A [media type](https://www.iana.org/assignments/media-types/media-types.xhtml) is an identifier for file formats and format contents. Note that not all possible media types might be supported.\n",
             "type": "string",
             "markdownDescription": "A [media type](https://www.iana.org/assignments/media-types/media-types.xhtml) is an identifier for file formats and format contents. Note that not all possible media types might be supported.\n\n\nSee more: [File Schema](https://schema.laboperator.com/schemas/definitions/field-schema/file) "
+          },
+          "multiple": {
+            "type": "boolean",
+            "default": false,
+            "description": "When true, the field accepts more than one file. The stored value is an\narray of attachment ids, and expressions expose per-file metadata as\ndescribed above.\n",
+            "markdownDescription": "When true, the field accepts more than one file. The stored value is an\narray of attachment ids, and expressions expose per-file metadata as\ndescribed above.\n\n\nSee more: [File Schema](https://schema.laboperator.com/schemas/definitions/field-schema/file) "
           }
         },
         "examples": [
@@ -3829,9 +3835,14 @@
           {
             "type": "file",
             "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          },
+          {
+            "type": "file",
+            "mediaType": "text/csv",
+            "multiple": true
           }
         ],
-        "markdownDescription": "Defines a field of type `file`.\n\n\nSee more: [File Schema](https://schema.laboperator.com/schemas/definitions/field-schema/file) "
+        "markdownDescription": "Defines a field of type `file`.\n\nA single-file field stores one attachment id. Interpolating the field\n(`{{myFile}}`) yields the Base64-encoded contents; scripts receive the\nparsed body when the media type is JSON, XML, or YAML.\n\nWith `multiple: true` the field stores an array of attachment ids. Each\nfile is addressable from workflow expressions and carries its own metadata\n(filename, content type, id, and contents), so callers can tell files\napart — for example which stress point an upload belongs to:\n\n- `{{myFiles.0.filename}}` — original filename\n- `{{myFiles.0.content_type}}` — media type\n- `{{myFiles.0.id}}` — attachment id\n- `{{myFiles.0.content}}` — Base64-encoded contents\n- `{{myFiles}}` — the full array (for example in a JSON webhook body)\n\nIn scripts the field is an array of objects with `id`, `filename`,\n`content_type`, and `body` (parsed for JSON, XML, or YAML). Use\n`VALUE_AT(myFiles, '/0/filename')` to read a single property.\n\n\nSee more: [File Schema](https://schema.laboperator.com/schemas/definitions/field-schema/file) "
       },
       "quantity": {
         "type": "object",
