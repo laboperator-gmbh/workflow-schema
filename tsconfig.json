@@ -1,15 +1,14 @@
 {
   "extends": "@laboperator-gmbh/config/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
     "declaration": true,
     "esModuleInterop": true,
     "outDir": "dist",
     "paths": {
-      "@/*": ["src/*"],
-      "@fixtures/*": ["src/__tests__/fixtures/*"]
+      "@/*": ["./src/*"],
+      "@fixtures/*": ["./src/__tests__/fixtures/*"]
     },
-    "rootDirs": ["src"],
+    "rootDir": "src",
     "strictNullChecks": true
   },
   "include": ["src/**/*"]

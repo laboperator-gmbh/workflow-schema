@@ -3,13 +3,12 @@ import { get, has, omit, set } from 'lodash';
 import definitions from './compile/definitions';
 import metaSchema from './compile/metaSchema';
 import {
+  Schema,
   forEachDeep,
   getPropertyPath,
   readFile,
   writeFile,
 } from './compile/utils';
-
-type Schema = Record<string, Record<string, unknown>>;
 
 /**
  * Retrieves the paths of referenced definitions within the Workflow Template
@@ -19,7 +18,7 @@ const getReferencedDefinitionsPaths = (schema: Schema) => {
   const references: Array<string> = [];
 
   forEachDeep(schema, (key, value) => {
-    if (key !== '$ref') return;
+    if (key !== '$ref' || typeof value !== 'string') return;
 
     const pathname = getPropertyPath(value);
 
