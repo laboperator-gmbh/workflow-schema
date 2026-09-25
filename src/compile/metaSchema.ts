@@ -1,11 +1,13 @@
 import jsonSchema from 'ajv/dist/refs/json-schema-draft-07.json';
 
+import { Schema } from './utils';
+
 const metaSchema = JSON.parse(
   JSON.stringify(jsonSchema).replace(
     /"#"/g,
     '"#/definitions/jsonSchemaDraft7"',
   ),
-);
+) as Schema & { definitions: Schema };
 
 /**
  * Ajv adds the draft-07 meta schema by default. If we keep this $id, the

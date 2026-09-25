@@ -1,9 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import fs from 'fs';
 import path from 'path';
 
 import { isPlainObject, last, startCase } from 'lodash';
 import yaml from 'yaml';
+
+// Schemas are traversed generically, so nested values stay `unknown` until a
+// type guard narrows them.
+export type Schema = Record<string, unknown>;
 
 // e.g. '#/definitions/flow/loop' => 'definitions.flow.loop'
 // e.g. 'definitions/flow/loop.yml' => 'definitions.flow.loop'
@@ -14,13 +17,15 @@ export const getPropertyPath = (pathname: string) =>
     .split('/')
     .join('.');
 
+export const parseSchema = (contents: string) => yaml.parse(contents) as Schema;
+
 export const readFile = (filename: string) => {
-  return yaml.parse(
+  return parseSchema(
     fs.readFileSync(path.join(__dirname, `../schemata/${filename}`), 'utf8'),
   );
 };
 
-export const writeFile = (schema: Record<string, unknown>, name: string) => {
+export const writeFile = (schema: Schema, name: string) => {
   const filename = name.replace('yml', 'json');
   const target = path.join(__dirname, `../${filename}`);
 
@@ -39,16 +44,18 @@ export const prepareLink = (pathname: string) => {
 };
 
 export const forEachDeep = (
-  obj: any,
-  cb: (key: string, value: any) => void,
+  obj: Schema,
+  cb: (key: string, value: unknown) => void,
 ) => {
   // The `obj` param can be an array for nested schemas, e.g. `allOf` field,
   // but we for..in iterate over it anyway until it breaks 🙃
   for (const key in obj) {
-    if (isPlainObject(obj[key]) || Array.isArray(obj[key])) {
-      forEachDeep(obj[key], cb);
+    const value = obj[key];
+
+    if (isPlainObject(value) || Array.isArray(value)) {
+      forEachDeep(value as Schema, cb);
     } else {
-      cb(key, obj[key]);
+      cb(key, value);
     }
   }
 };
@@ -59,12 +66,14 @@ export const forEachDeep = (
  *
  * https://code.visualstudio.com/docs/languages/json#_use-rich-formatting-in-hovers
  */
-export const addMarkdownDescription = (pathname: string, obj: any) => {
+export const addMarkdownDescription = (pathname: string, obj: Schema) => {
   // The `obj` param can be an array for nested schemas, e.g. `allOf` field,
   // but we for..in iterate over it anyway until it breaks 🙃
   for (const key in obj) {
-    if (key === 'description' && typeof obj[key] === 'string') {
-      const parsedDescription = obj.description
+    const value = obj[key];
+
+    if (key === 'description' && typeof value === 'string') {
+      const parsedDescription = value
         .replace(/\]\(\/schemas/, '](https://schema.laboperator.com/schemas')
         // In nested code blocks spaces are sometimes rendered as their HTML
         // entity string value of `&emsp`. To fix that we replace them with
@@ -77,8 +86,8 @@ export const addMarkdownDescription = (pathname: string, obj: any) => {
 
       // eslint-disable-next-line no-param-reassign
       obj.markdownDescription = parsedDescription + link;
-    } else if (isPlainObject(obj[key]) || Array.isArray(obj[key])) {
-      addMarkdownDescription(pathname, obj[key]);
+    } else if (isPlainObject(value) || Array.isArray(value)) {
+      addMarkdownDescription(pathname, value as Schema);
     }
   }
 };
