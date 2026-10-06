@@ -3274,6 +3274,12 @@ export declare const schemas: {
                         changeReason: {
                             $ref: string;
                         };
+                        externalProperty: {
+                            type: string;
+                            description: string;
+                            examples: string[];
+                            markdownDescription: string;
+                        };
                     };
                     oneOf?: undefined;
                 } | {
@@ -6813,6 +6819,12 @@ export declare const schemas: {
                         };
                         changeReason: {
                             $ref: string;
+                        };
+                        externalProperty: {
+                            type: string;
+                            description: string;
+                            examples: string[];
+                            markdownDescription: string;
                         };
                     };
                     oneOf?: undefined;
