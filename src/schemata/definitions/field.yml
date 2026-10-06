@@ -71,6 +71,15 @@ allOf:
           The name of a property of the experiment linked through an integrated workspace. The field is set from that property when the workflow run starts. A list property (e.g. linked Portfolio Projects) gives one row per selected value with its detail columns, in selection order, so map it to a field of type `array`. Any other property gives its value.
         examples:
           - Portfolio Projects
+      enumFrom:
+        $ref: '#/definitions/member-name'
+        description: |
+          The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence.
+      enumFromProperty:
+        type: string
+        minLength: 1
+        description: |
+          When the field referenced by `enumFrom` holds an array of objects (for example a table field), the property name to read from each entry to build the option list. Omit this when the referenced field's value is already a flat array of option values.
   - oneOf:
       - $ref: '#/definitions/jsonSchemaDraft7'
       - $ref: '#/definitions/field-schema/file'
@@ -84,6 +93,10 @@ examples:
     enum:
       - German
       - English
+  # dynamic enum options sourced from another field
+  - type: string
+    enumFrom: materialSetupData
+    enumFromProperty: media
   # multi-line text
   - type: string
     output: false
