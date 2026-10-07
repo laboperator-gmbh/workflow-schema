@@ -3822,6 +3822,14 @@
                         },
                         "changeReason": {
                             "$ref": "#/definitions/workflow-template/change-reason"
+                        },
+                        "externalProperty": {
+                            "type": "string",
+                            "description": "The name of a property of the experiment linked through an integrated workspace. The field is set from that property when the workflow run starts. A list property (e.g. linked Portfolio Projects) gives one row per selected value with its detail columns, in selection order, so map it to a field of type `array`. Any other property gives its value.\n",
+                            "examples": [
+                                "Portfolio Projects"
+                            ],
+                            "markdownDescription": "The name of a property of the experiment linked through an integrated workspace. The field is set from that property when the workflow run starts. A list property (e.g. linked Portfolio Projects) gives one row per selected value with its detail columns, in selection order, so map it to a field of type `array`. Any other property gives its value.\n\n\nSee more: [Field Schema](https://schema.laboperator.com/schemas/definitions/field) "
                         }
                     }
                 },
