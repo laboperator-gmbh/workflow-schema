@@ -895,12 +895,6 @@ export declare const schemas: {
                             media: string;
                         }[];
                     };
-                    enumOptions?: undefined;
-                    multiLineText?: undefined;
-                    switchField?: undefined;
-                    complexField?: undefined;
-                    media?: undefined;
-                } | {
                     media: {
                         type: string;
                         enumFrom: string;
@@ -910,7 +904,6 @@ export declare const schemas: {
                     multiLineText?: undefined;
                     switchField?: undefined;
                     complexField?: undefined;
-                    materialSetupData?: undefined;
                 })[];
                 markdownDescription: string;
             };
@@ -3332,6 +3325,9 @@ export declare const schemas: {
                             markdownDescription: string;
                         };
                     };
+                    dependencies: {
+                        enumFromProperty: string[];
+                    };
                     oneOf?: undefined;
                 } | {
                     oneOf: {
@@ -3340,6 +3336,7 @@ export declare const schemas: {
                     type?: undefined;
                     required?: undefined;
                     properties?: undefined;
+                    dependencies?: undefined;
                 })[];
                 examples: ({
                     type: string;
@@ -5224,12 +5221,6 @@ export declare const schemas: {
                             media: string;
                         }[];
                     };
-                    enumOptions?: undefined;
-                    multiLineText?: undefined;
-                    switchField?: undefined;
-                    complexField?: undefined;
-                    media?: undefined;
-                } | {
                     media: {
                         type: string;
                         enumFrom: string;
@@ -5239,7 +5230,6 @@ export declare const schemas: {
                     multiLineText?: undefined;
                     switchField?: undefined;
                     complexField?: undefined;
-                    materialSetupData?: undefined;
                 })[];
                 markdownDescription: string;
             };
@@ -6949,6 +6939,9 @@ export declare const schemas: {
                             markdownDescription: string;
                         };
                     };
+                    dependencies: {
+                        enumFromProperty: string[];
+                    };
                     oneOf?: undefined;
                 } | {
                     oneOf: {
@@ -6957,6 +6950,7 @@ export declare const schemas: {
                     type?: undefined;
                     required?: undefined;
                     properties?: undefined;
+                    dependencies?: undefined;
                 })[];
                 examples: ({
                     type: string;

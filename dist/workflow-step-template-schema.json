@@ -493,9 +493,7 @@
                                 "media": "Broth"
                             }
                         ]
-                    }
-                },
-                {
+                    },
                     "media": {
                         "type": "string",
                         "enumFrom": "materialSetupData",
@@ -3630,8 +3628,8 @@
                         },
                         "enumFrom": {
                             "$ref": "#/definitions/member-name",
-                            "description": "The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence.\n",
-                            "markdownDescription": "The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence.\n\n\nSee more: [Field Schema](https://schema.laboperator.com/schemas/definitions/field) "
+                            "description": "The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence. Only applies to fields of type `string` or `number`; other types ignore it.\n",
+                            "markdownDescription": "The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence. Only applies to fields of type `string` or `number`; other types ignore it.\n\n\nSee more: [Field Schema](https://schema.laboperator.com/schemas/definitions/field) "
                         },
                         "enumFromProperty": {
                             "type": "string",
@@ -3639,6 +3637,11 @@
                             "description": "When the field referenced by `enumFrom` holds an array of objects (for example a table field), the property name to read from each entry to build the option list. Omit this when the referenced field's value is already a flat array of option values.\n",
                             "markdownDescription": "When the field referenced by `enumFrom` holds an array of objects (for example a table field), the property name to read from each entry to build the option list. Omit this when the referenced field's value is already a flat array of option values.\n\n\nSee more: [Field Schema](https://schema.laboperator.com/schemas/definitions/field) "
                         }
+                    },
+                    "dependencies": {
+                        "enumFromProperty": [
+                            "enumFrom"
+                        ]
                     }
                 },
                 {

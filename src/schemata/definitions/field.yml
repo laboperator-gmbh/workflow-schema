@@ -74,12 +74,14 @@ allOf:
       enumFrom:
         $ref: '#/definitions/member-name'
         description: |
-          The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence.
+          The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence. Only applies to fields of type `string` or `number`; other types ignore it.
       enumFromProperty:
         type: string
         minLength: 1
         description: |
           When the field referenced by `enumFrom` holds an array of objects (for example a table field), the property name to read from each entry to build the option list. Omit this when the referenced field's value is already a flat array of option values.
+    dependencies:
+      enumFromProperty: [enumFrom]
   - oneOf:
       - $ref: '#/definitions/jsonSchemaDraft7'
       - $ref: '#/definitions/field-schema/file'

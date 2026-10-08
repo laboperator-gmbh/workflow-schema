@@ -56,7 +56,7 @@ examples:
       defaultValue:
         - media: Agar
         - media: Broth
-  - media:
+    media:
       type: string
       enumFrom: materialSetupData
       enumFromProperty: media
