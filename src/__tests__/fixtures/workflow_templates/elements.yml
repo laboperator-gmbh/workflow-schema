@@ -26,6 +26,20 @@ fields:
     type: 'string'
     format: date-time
     prepare: true
+  MaterialSetupData:
+    type: 'array'
+    items:
+      type: object
+      properties:
+        media:
+          type: string
+          enum:
+            - Agar
+            - Broth
+  MediaField:
+    type: 'string'
+    enumFrom: MaterialSetupData
+    enumFromProperty: media
 
 elements:
   - type: Display

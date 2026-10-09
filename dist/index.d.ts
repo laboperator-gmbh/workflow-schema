@@ -826,6 +826,8 @@ export declare const schemas: {
                     multiLineText?: undefined;
                     switchField?: undefined;
                     complexField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
                 } | {
                     multiLineText: {
                         type: string;
@@ -836,6 +838,8 @@ export declare const schemas: {
                     enumOptions?: undefined;
                     switchField?: undefined;
                     complexField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
                 } | {
                     switchField: {
                         type: string;
@@ -847,6 +851,8 @@ export declare const schemas: {
                     enumOptions?: undefined;
                     multiLineText?: undefined;
                     complexField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
                 } | {
                     complexField: {
                         type: string;
@@ -871,6 +877,33 @@ export declare const schemas: {
                     enumOptions?: undefined;
                     multiLineText?: undefined;
                     switchField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
+                } | {
+                    materialSetupData: {
+                        type: string;
+                        items: {
+                            type: string;
+                            properties: {
+                                media: {
+                                    type: string;
+                                    enum: string[];
+                                };
+                            };
+                        };
+                        defaultValue: {
+                            media: string;
+                        }[];
+                    };
+                    media: {
+                        type: string;
+                        enumFrom: string;
+                        enumFromProperty: string;
+                    };
+                    enumOptions?: undefined;
+                    multiLineText?: undefined;
+                    switchField?: undefined;
+                    complexField?: undefined;
                 })[];
                 markdownDescription: string;
             };
@@ -3280,6 +3313,20 @@ export declare const schemas: {
                             examples: string[];
                             markdownDescription: string;
                         };
+                        enumFrom: {
+                            $ref: string;
+                            description: string;
+                            markdownDescription: string;
+                        };
+                        enumFromProperty: {
+                            type: string;
+                            minLength: number;
+                            description: string;
+                            markdownDescription: string;
+                        };
+                    };
+                    dependencies: {
+                        enumFromProperty: string[];
                     };
                     oneOf?: undefined;
                 } | {
@@ -3289,10 +3336,25 @@ export declare const schemas: {
                     type?: undefined;
                     required?: undefined;
                     properties?: undefined;
+                    dependencies?: undefined;
                 })[];
                 examples: ({
                     type: string;
                     enum: string[];
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
+                    output?: undefined;
+                    group?: undefined;
+                    "ui:widget"?: undefined;
+                    "ui:options"?: undefined;
+                    hidden?: undefined;
+                    items?: undefined;
+                    defaultValue?: undefined;
+                } | {
+                    type: string;
+                    enumFrom: string;
+                    enumFromProperty: string;
+                    enum?: undefined;
                     output?: undefined;
                     group?: undefined;
                     "ui:widget"?: undefined;
@@ -3306,6 +3368,8 @@ export declare const schemas: {
                     group: string;
                     "ui:widget": string;
                     enum?: undefined;
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
                     "ui:options"?: undefined;
                     hidden?: undefined;
                     items?: undefined;
@@ -3317,6 +3381,8 @@ export declare const schemas: {
                         label: boolean;
                     };
                     enum?: undefined;
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
                     output?: undefined;
                     group?: undefined;
                     hidden?: undefined;
@@ -3342,6 +3408,8 @@ export declare const schemas: {
                         name: string;
                     }[];
                     enum?: undefined;
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
                     output?: undefined;
                     group?: undefined;
                     "ui:widget"?: undefined;
@@ -5084,6 +5152,8 @@ export declare const schemas: {
                     multiLineText?: undefined;
                     switchField?: undefined;
                     complexField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
                 } | {
                     multiLineText: {
                         type: string;
@@ -5094,6 +5164,8 @@ export declare const schemas: {
                     enumOptions?: undefined;
                     switchField?: undefined;
                     complexField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
                 } | {
                     switchField: {
                         type: string;
@@ -5105,6 +5177,8 @@ export declare const schemas: {
                     enumOptions?: undefined;
                     multiLineText?: undefined;
                     complexField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
                 } | {
                     complexField: {
                         type: string;
@@ -5129,6 +5203,33 @@ export declare const schemas: {
                     enumOptions?: undefined;
                     multiLineText?: undefined;
                     switchField?: undefined;
+                    materialSetupData?: undefined;
+                    media?: undefined;
+                } | {
+                    materialSetupData: {
+                        type: string;
+                        items: {
+                            type: string;
+                            properties: {
+                                media: {
+                                    type: string;
+                                    enum: string[];
+                                };
+                            };
+                        };
+                        defaultValue: {
+                            media: string;
+                        }[];
+                    };
+                    media: {
+                        type: string;
+                        enumFrom: string;
+                        enumFromProperty: string;
+                    };
+                    enumOptions?: undefined;
+                    multiLineText?: undefined;
+                    switchField?: undefined;
+                    complexField?: undefined;
                 })[];
                 markdownDescription: string;
             };
@@ -6826,6 +6927,20 @@ export declare const schemas: {
                             examples: string[];
                             markdownDescription: string;
                         };
+                        enumFrom: {
+                            $ref: string;
+                            description: string;
+                            markdownDescription: string;
+                        };
+                        enumFromProperty: {
+                            type: string;
+                            minLength: number;
+                            description: string;
+                            markdownDescription: string;
+                        };
+                    };
+                    dependencies: {
+                        enumFromProperty: string[];
                     };
                     oneOf?: undefined;
                 } | {
@@ -6835,10 +6950,25 @@ export declare const schemas: {
                     type?: undefined;
                     required?: undefined;
                     properties?: undefined;
+                    dependencies?: undefined;
                 })[];
                 examples: ({
                     type: string;
                     enum: string[];
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
+                    output?: undefined;
+                    group?: undefined;
+                    "ui:widget"?: undefined;
+                    "ui:options"?: undefined;
+                    hidden?: undefined;
+                    items?: undefined;
+                    defaultValue?: undefined;
+                } | {
+                    type: string;
+                    enumFrom: string;
+                    enumFromProperty: string;
+                    enum?: undefined;
                     output?: undefined;
                     group?: undefined;
                     "ui:widget"?: undefined;
@@ -6852,6 +6982,8 @@ export declare const schemas: {
                     group: string;
                     "ui:widget": string;
                     enum?: undefined;
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
                     "ui:options"?: undefined;
                     hidden?: undefined;
                     items?: undefined;
@@ -6863,6 +6995,8 @@ export declare const schemas: {
                         label: boolean;
                     };
                     enum?: undefined;
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
                     output?: undefined;
                     group?: undefined;
                     hidden?: undefined;
@@ -6888,6 +7022,8 @@ export declare const schemas: {
                         name: string;
                     }[];
                     enum?: undefined;
+                    enumFrom?: undefined;
+                    enumFromProperty?: undefined;
                     output?: undefined;
                     group?: undefined;
                     "ui:widget"?: undefined;

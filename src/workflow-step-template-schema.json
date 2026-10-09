@@ -469,6 +469,36 @@
               }
             ]
           }
+        },
+        {
+          "materialSetupData": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "media": {
+                  "type": "string",
+                  "enum": [
+                    "Agar",
+                    "Broth"
+                  ]
+                }
+              }
+            },
+            "defaultValue": [
+              {
+                "media": "Agar"
+              },
+              {
+                "media": "Broth"
+              }
+            ]
+          },
+          "media": {
+            "type": "string",
+            "enumFrom": "materialSetupData",
+            "enumFromProperty": "media"
+          }
         }
       ],
       "markdownDescription": "Fields are top-level and step-level variables in a workflow template. A field can be used to store and retrieve information during workflow execution.\n\nFields of type array and object can be assigned a schema to validate its value.\n\nA field identifier, which is its key within the `fields` object, is considered unique in the context of a workflow. By definition a second occurrence of the same key will override the first occurrence. In markdown, fields can be referenced via their unique identifier: `{{myStringField}}`\n\n\nSee more: [Fields Schema](https://schema.laboperator.com/schemas/definitions/fields) "
@@ -3595,7 +3625,23 @@
                 "Portfolio Projects"
               ],
               "markdownDescription": "The name of a property of the experiment linked through an integrated workspace. The field is set from that property when the workflow run starts. A list property (e.g. linked Portfolio Projects) gives one row per selected value with its detail columns, in selection order, so map it to a field of type `array`. Any other property gives its value.\n\n\nSee more: [Field Schema](https://schema.laboperator.com/schemas/definitions/field) "
+            },
+            "enumFrom": {
+              "$ref": "#/definitions/member-name",
+              "description": "The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence. Only applies to fields of type `string` or `number`; other types ignore it.\n",
+              "markdownDescription": "The identifier of another field in the same workflow whose current value supplies the list of options for this field at runtime, instead of a literal `enum` list. If the referenced field does not exist, or has not been assigned a value yet, this field has no options. If both `enumFrom` and `enum` are present, `enumFrom` takes precedence. Only applies to fields of type `string` or `number`; other types ignore it.\n\n\nSee more: [Field Schema](https://schema.laboperator.com/schemas/definitions/field) "
+            },
+            "enumFromProperty": {
+              "type": "string",
+              "minLength": 1,
+              "description": "When the field referenced by `enumFrom` holds an array of objects (for example a table field), the property name to read from each entry to build the option list. Omit this when the referenced field's value is already a flat array of option values.\n",
+              "markdownDescription": "When the field referenced by `enumFrom` holds an array of objects (for example a table field), the property name to read from each entry to build the option list. Omit this when the referenced field's value is already a flat array of option values.\n\n\nSee more: [Field Schema](https://schema.laboperator.com/schemas/definitions/field) "
             }
+          },
+          "dependencies": {
+            "enumFromProperty": [
+              "enumFrom"
+            ]
           }
         },
         {
@@ -3628,6 +3674,11 @@
             "German",
             "English"
           ]
+        },
+        {
+          "type": "string",
+          "enumFrom": "materialSetupData",
+          "enumFromProperty": "media"
         },
         {
           "type": "string",

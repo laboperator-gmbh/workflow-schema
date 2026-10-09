@@ -43,3 +43,20 @@ examples:
           name: Sample 1
         - weight: 17
           name: Sample 2
+  - materialSetupData:
+      type: array
+      items:
+        type: object
+        properties:
+          media:
+            type: string
+            enum:
+              - Agar
+              - Broth
+      defaultValue:
+        - media: Agar
+        - media: Broth
+    media:
+      type: string
+      enumFrom: materialSetupData
+      enumFromProperty: media
